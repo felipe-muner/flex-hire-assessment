@@ -25,7 +25,11 @@ function UserInfo(props: UserInfoProps) {
   return <div>{JSON.stringify(props.currentUser)}</div>;
 }
 
-function UserInfoContainer() {
+type UserInfoContainerProps = {
+  apiKey: string;
+};
+
+function UserInfoContainer(props: UserInfoContainerProps) {
   return (
     <QueryRenderer
       environment={RelayEnvironment}

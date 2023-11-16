@@ -24,7 +24,7 @@ function App() {
           Use your API key to fetch data
         </Typography>
         <Form apiKey={apiKey} setApiKey={setApiKey} />
-        <UserInfo />
+        <UserInfo apiKey={apiKey} />
       </Container>
     </div>
   );
