@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container, Typography } from "@mui/material";
+import "./App.css";
+import { Header } from "./components";
+import { Form } from "./components/form";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Container maxWidth="lg" style={{ boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
+        <Typography variant="h4" component="h4" gutterBottom mt={10}>
+          Use your API key to fetch data
+        </Typography>
+        <Form />
+      </Container>
     </div>
   );
 }
