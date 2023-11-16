@@ -1,10 +1,6 @@
-import {
-  Button,
-  FormHelperText,
-  Grid,
-  TextField,
-} from "@mui/material";
+import { Button, FormHelperText, Grid, TextField } from "@mui/material";
 import { useState, FormEvent } from "react";
+
 
 function Form() {
   const [apiKey, setApiKey] = useState<string>("");
@@ -12,15 +8,20 @@ function Form() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (apiKey === "") {
+      return;
+    }
+    
     setIsSubmitted(true);
   };
 
+
   return (
     <form onSubmit={handleSubmit}>
-      <Grid container spacing={2} alignItems="start" mt={3}>
+      <Grid container spacing={2} mt={3}>
         <Grid item>
           <TextField
-            label="API Key"
+            label="API key"
             variant="outlined"
             size="small"
             value={apiKey}
