@@ -6,12 +6,14 @@ import {
   FetchFunction,
 } from "relay-runtime";
 
+// @TODO: conditional dev vs prod (proxy on local to pass CORS)
 const HTTP_ENDPOINT = "https://flexhire.com/api/v2";
 
 const fetchFn: FetchFunction = async (request, variables) => {
-  const resp = await fetch(HTTP_ENDPOINT, {
+  const resp = await fetch("/api/v2", {
     method: "POST",
     headers: {
+      "FLEXHIRE-API-KEY": "er9bff8zc82ju2w6",
       Accept:
         "application/graphql-response+json; charset=utf-8, application/json; charset=utf-8",
       "Content-Type": "application/json",

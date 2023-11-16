@@ -1,20 +1,29 @@
 import { Button, FormHelperText, Grid, TextField } from "@mui/material";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, Dispatch, SetStateAction } from "react";
 
+export type FormProps = {
+  /**
+   * To show the current value on the input.
+   */
+  apiKey: string;
+  /**
+   * To set a new value for the api key.
+   */
+  setApiKey: Dispatch<SetStateAction<string>>;
+};
 
-function Form() {
-  const [apiKey, setApiKey] = useState<string>("");
+function Form(props: FormProps) {
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (apiKey === "") {
+    if (props.apiKey !== "") {
+      setIsSubmitted(true);
+    }
+    if (props.apiKey === "") {
       return;
     }
-    
-    setIsSubmitted(true);
   };
-
 
   return (
     <form onSubmit={handleSubmit}>
@@ -24,11 +33,11 @@ function Form() {
             label="API key"
             variant="outlined"
             size="small"
-            value={apiKey}
-            onChange={(e) => setApiKey(e.target.value)}
-            error={isSubmitted && apiKey === ""}
+            value={props.apiKey}
+            onChange={(e) => props.setApiKey(e.target.value)}
+            error={isSubmitted && props.apiKey === ""}
           />
-          {isSubmitted && apiKey === "" && (
+          {isSubmitted && props.apiKey === "" && (
             <FormHelperText error>Please enter an API key</FormHelperText>
           )}
         </Grid>
