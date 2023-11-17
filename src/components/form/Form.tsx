@@ -1,5 +1,7 @@
 import { Button, FormHelperText, Grid, TextField } from "@mui/material";
 import { useState, FormEvent, Dispatch, SetStateAction } from "react";
+import { useQueryLoader } from "react-relay";
+import { query } from "../../App";
 
 export type FormProps = {
   /**
@@ -10,19 +12,19 @@ export type FormProps = {
    * To set a new value for the api key.
    */
   setApiKey: Dispatch<SetStateAction<string>>;
+  loadQuery: any;
 };
 
 function Form(props: FormProps) {
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (props.apiKey !== "") {
-      setIsSubmitted(true);
-    }
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    localStorage.setItem("FLEXHIRE-API-KEY", props.apiKey);
+    setIsSubmitted(true);
     if (props.apiKey === "") {
       return;
     }
+    props.loadQuery({}, { fetchPolicy: "network-only" });
   };
 
   return (

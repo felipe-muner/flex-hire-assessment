@@ -1,19 +1,35 @@
-import { Container, Typography } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import "./App.css";
 import { Header } from "./components";
 import { Form } from "./components/form";
-import { useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import ProfilePage from "./pages/profile";
 import JobsPage from "./pages/jobs";
-import MyTest from "./components/MyTest";
+import { useQueryLoader } from "react-relay";
+import graphql from "babel-plugin-relay/macro";
+
+export const query = graphql`
+  query AppQuery {
+    currentUser {
+      name
+      avatarUrl
+      userSkills {
+        skill {
+          name
+        }
+        experience
+      }
+    }
+  }
+`;
 
 function App() {
   const [apiKey, setApiKey] = useState<string>("");
+  const [queryReference, loadQuery, dispose] = useQueryLoader(query);
   return (
     <div className="App">
-      <MyTest />
-      {/* <Header />
+      <Header />
       <Container
         maxWidth="lg"
         style={{
@@ -23,17 +39,38 @@ function App() {
           marginTop: "5rem",
         }}
       >
-        <Form apiKey={apiKey} setApiKey={setApiKey} />
+        <Form apiKey={apiKey} setApiKey={setApiKey} loadQuery={loadQuery} />
+        {queryReference && <Button onClick={() => dispose()}>dispose</Button>}
         <Router>
-          <nav>
-            <Link to="/profile">Profile</Link> | <Link to="/jobs">Jobs</Link>
-          </nav>
-          <Routes>
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/jobs" element={<JobsPage />} />
-          </Routes>
-        </Router>        
-      </Container> */}
+          {queryReference && (
+            <>
+              <nav>
+                <Link to="/profile">Profile</Link> |{" "}
+                <Link to="/jobs">Jobs</Link>
+              </nav>
+              <React.Suspense fallback="Loading">
+                <Routes>
+                  <Route
+                    path="/profile"
+                    element={
+                      <ProfilePage
+                        queryReference={queryReference}
+                        query={query}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/jobs"
+                    element={
+                      <JobsPage queryReference={queryReference} query={query} />
+                    }
+                  />
+                </Routes>
+              </React.Suspense>
+            </>
+          )}
+        </Router>
+      </Container>
     </div>
   );
 }
