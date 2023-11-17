@@ -13,14 +13,13 @@ const fetchFn: FetchFunction = async (request, variables) => {
   const resp = await fetch("/api/v2", {
     method: "POST",
     headers: {
-      "FLEXHIRE-API-KEY": "er9bff8zc82ju2w6",
+      "FLEXHIRE-API-KEY": localStorage.getItem("FLEXHIRE-API-KEY") || "",
       Accept:
         "application/graphql-response+json; charset=utf-8, application/json; charset=utf-8",
       "Content-Type": "application/json",
-      // <-- Additional headers like 'Authorization' would go here
     },
     body: JSON.stringify({
-      query: request.text, // <-- The GraphQL document composed by Relay
+      query: request.text,
       variables,
     }),
   });
