@@ -27,7 +27,7 @@ function Form(props: FormProps) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Grid container spacing={2} mt={3}>
+      <Grid container spacing={2} mt={3} mb={3}>
         <Grid item>
           <TextField
             label="API key"

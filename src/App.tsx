@@ -1,13 +1,14 @@
 import { Container, Typography } from "@mui/material";
 import "./App.css";
-import { Header, UserInfo } from "./components";
+import { Header } from "./components";
 import { Form } from "./components/form";
 import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import ProfilePage from "./pages/profile";
+import JobsPage from "./pages/jobs";
 
 function App() {
   const [apiKey, setApiKey] = useState<string>("");
-  console.log('apiKey-', apiKey);
-  
   return (
     <div className="App">
       <Header />
@@ -20,11 +21,16 @@ function App() {
           marginTop: "5rem",
         }}
       >
-        <Typography variant="h4" component="h4" gutterBottom mt={2}>
-          Use your API key to fetch data
-        </Typography>
         <Form apiKey={apiKey} setApiKey={setApiKey} />
-        <UserInfo apiKey={apiKey} />
+        <Router>
+          <nav>
+            <Link to="/profile">Profile</Link> | <Link to="/jobs">Jobs</Link>
+          </nav>
+          <Routes>
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/jobs" element={<JobsPage />} />
+          </Routes>
+        </Router>        
       </Container>
     </div>
   );
