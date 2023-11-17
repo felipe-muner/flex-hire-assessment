@@ -1,6 +1,6 @@
 import { Button, Container } from "@mui/material";
 import "./App.css";
-import { Header } from "./components";
+import { Header, Loading } from "./components";
 import { Form } from "./components/form";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -44,11 +44,11 @@ function App() {
         <Router>
           {queryReference && (
             <>
-              <nav>
+              <nav style={{ marginBottom: "20px" }}>
                 <Link to="/profile">Profile</Link> |{" "}
                 <Link to="/jobs">Jobs</Link>
               </nav>
-              <React.Suspense fallback="Loading">
+              <React.Suspense fallback={<Loading />}>
                 <Routes>
                   <Route
                     path="/profile"
