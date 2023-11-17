@@ -6,12 +6,14 @@ import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import ProfilePage from "./pages/profile";
 import JobsPage from "./pages/jobs";
+import MyTest from "./components/MyTest";
 
 function App() {
   const [apiKey, setApiKey] = useState<string>("");
   return (
     <div className="App">
-      <Header />
+      <MyTest />
+      {/* <Header />
       <Container
         maxWidth="lg"
         style={{
@@ -31,7 +33,7 @@ function App() {
             <Route path="/jobs" element={<JobsPage />} />
           </Routes>
         </Router>        
-      </Container>
+      </Container> */}
     </div>
   );
 }
