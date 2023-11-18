@@ -38,7 +38,7 @@ function Form(props: FormProps) {
     if (props.apiKey === "") {
       return;
     }
-    // props.loadQuery({}, { fetchPolicy: "network-only" });
+    props.loadQuery({}, { fetchPolicy: "network-only" });
     navigate('/profile');
   };
 

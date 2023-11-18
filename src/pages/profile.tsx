@@ -6,7 +6,6 @@ import {
 } from "react-relay";
 import { AppQuery } from "../__generated__/AppQuery.graphql";
 import { OperationType } from "relay-runtime";
-import { DUMMY_CURRENT_USER } from "../dummy";
 
 interface ProfilePageProps {
   queryReference:
@@ -17,16 +16,27 @@ interface ProfilePageProps {
 }
 
 function ProfilePage(props: ProfilePageProps) {
-  // const data = usePreloadedQuery<AppQuery>(
-  //   props.query,
-  //   props.queryReference as PreloadedQuery<AppQuery, Record<string, unknown>>
-  // );
-  const data = DUMMY_CURRENT_USER;
+  const data = usePreloadedQuery<AppQuery>(
+    props.query,
+    props.queryReference as PreloadedQuery<AppQuery, Record<string, unknown>>
+  );
 
   const user = {
     name: data.currentUser?.name ?? "",
     avatarUrl: data.currentUser?.avatarUrl ?? "",
-    userSkills: data.currentUser?.userSkills ?? [],
+    videoAnswers:
+      data.currentUser?.answers?.map((answer) => {
+        return answer?.answer?.video?.url ?? "";
+      }) ?? [],
+    userSkills:
+      data.currentUser?.userSkills?.map((skill) => {
+        return {
+          skill: {
+            name: skill?.skill?.name ?? "",
+          },
+          experience: skill?.experience ?? 0,
+        };
+      }) ?? [],
   };
 
   return <UserInfo currentUser={user} />;

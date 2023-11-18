@@ -14,6 +14,13 @@ export const query = graphql`
     currentUser {
       name
       avatarUrl
+      answers {
+        answer {
+          video {
+            url
+          }
+        }
+      }
       userSkills {
         skill {
           name
@@ -42,32 +49,33 @@ function App() {
         >
           <Form apiKey={apiKey} setApiKey={setApiKey} loadQuery={loadQuery} />
           {queryReference && <Button onClick={() => dispose()}>dispose</Button>}
-          {/* {queryReference && ( */}
-          <>
-            <nav style={{ marginBottom: "20px" }}>
-              <Link to="/profile">Profile</Link> | <Link to="/jobs">Jobs</Link>
-            </nav>
-            <React.Suspense fallback={<Loading />}>
-              <Routes>
-                <Route
-                  path="/profile"
-                  element={
-                    <ProfilePage
-                      queryReference={queryReference}
-                      query={query}
-                    />
-                  }
-                />
-                <Route
-                  path="/jobs"
-                  element={
-                    <JobsPage queryReference={queryReference} query={query} />
-                  }
-                />
-              </Routes>
-            </React.Suspense>
-          </>
-          {/* )} */}
+          {queryReference && (
+            <>
+              <nav style={{ marginBottom: "20px" }}>
+                <Link to="/profile">Profile</Link> |{" "}
+                <Link to="/jobs">Jobs</Link>
+              </nav>
+              <React.Suspense fallback={<Loading />}>
+                <Routes>
+                  <Route
+                    path="/profile"
+                    element={
+                      <ProfilePage
+                        queryReference={queryReference}
+                        query={query}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/jobs"
+                    element={
+                      <JobsPage queryReference={queryReference} query={query} />
+                    }
+                  />
+                </Routes>
+              </React.Suspense>
+            </>
+          )}
         </Container>
       </div>
     </Router>

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0544f90291302240aa41d41d216f7902>>
+ * @generated SignedSource<<1fdc88f3b3c2c05a958622cbda930306>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,6 +12,13 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 export type AppQuery$variables = Record<PropertyKey, never>;
 export type AppQuery$data = {
   readonly currentUser: {
+    readonly answers: ReadonlyArray<{
+      readonly answer: {
+        readonly video: {
+          readonly url: string;
+        } | null | undefined;
+      } | null | undefined;
+    }> | null | undefined;
     readonly avatarUrl: string | null | undefined;
     readonly name: string | null | undefined;
     readonly userSkills: ReadonlyArray<{
@@ -46,10 +53,17 @@ v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "experience",
+  "name": "url",
   "storageKey": null
 },
 v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "experience",
+  "storageKey": null
+},
+v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -76,6 +90,40 @@ return {
           {
             "alias": null,
             "args": null,
+            "concreteType": "Video",
+            "kind": "LinkedField",
+            "name": "answers",
+            "plural": true,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Answer",
+                "kind": "LinkedField",
+                "name": "answer",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "Video",
+                    "kind": "LinkedField",
+                    "name": "video",
+                    "plural": false,
+                    "selections": [
+                      (v2/*: any*/)
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
             "concreteType": "UserSkill",
             "kind": "LinkedField",
             "name": "userSkills",
@@ -93,7 +141,7 @@ return {
                 ],
                 "storageKey": null
               },
-              (v2/*: any*/)
+              (v3/*: any*/)
             ],
             "storageKey": null
           }
@@ -123,6 +171,43 @@ return {
           {
             "alias": null,
             "args": null,
+            "concreteType": "Video",
+            "kind": "LinkedField",
+            "name": "answers",
+            "plural": true,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Answer",
+                "kind": "LinkedField",
+                "name": "answer",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "Video",
+                    "kind": "LinkedField",
+                    "name": "video",
+                    "plural": false,
+                    "selections": [
+                      (v2/*: any*/),
+                      (v4/*: any*/)
+                    ],
+                    "storageKey": null
+                  },
+                  (v4/*: any*/)
+                ],
+                "storageKey": null
+              },
+              (v4/*: any*/)
+            ],
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
             "concreteType": "UserSkill",
             "kind": "LinkedField",
             "name": "userSkills",
@@ -137,32 +222,32 @@ return {
                 "plural": false,
                 "selections": [
                   (v0/*: any*/),
-                  (v3/*: any*/)
+                  (v4/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v2/*: any*/),
-              (v3/*: any*/)
+              (v3/*: any*/),
+              (v4/*: any*/)
             ],
             "storageKey": null
           },
-          (v3/*: any*/)
+          (v4/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "f402a15886dd493098dda7bf77686cce",
+    "cacheID": "71cc154e65a9565fc07dcf410a57bfe4",
     "id": null,
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery {\n  currentUser {\n    name\n    avatarUrl\n    userSkills {\n      skill {\n        name\n        id\n      }\n      experience\n      id\n    }\n    id\n  }\n}\n"
+    "text": "query AppQuery {\n  currentUser {\n    name\n    avatarUrl\n    answers {\n      answer {\n        video {\n          url\n          id\n        }\n        id\n      }\n      id\n    }\n    userSkills {\n      skill {\n        name\n        id\n      }\n      experience\n      id\n    }\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "da0bddcfbf1123d21a8a46a05443621b";
+(node as any).hash = "ae63dc8a2581b6befb70a37ca8a34133";
 
 export default node;
