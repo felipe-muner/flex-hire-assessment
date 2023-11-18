@@ -42,7 +42,7 @@ function App() {
         <Form apiKey={apiKey} setApiKey={setApiKey} loadQuery={loadQuery} />
         {queryReference && <Button onClick={() => dispose()}>dispose</Button>}
         <Router>
-          {queryReference && (
+          {/* {queryReference && ( */}
             <>
               <nav style={{ marginBottom: "20px" }}>
                 <Link to="/profile">Profile</Link> |{" "}
@@ -68,7 +68,7 @@ function App() {
                 </Routes>
               </React.Suspense>
             </>
-          )}
+          {/* )} */}
         </Router>
       </Container>
     </div>

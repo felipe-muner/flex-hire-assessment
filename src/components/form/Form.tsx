@@ -1,7 +1,13 @@
-import { Button, FormHelperText, Grid, TextField } from "@mui/material";
-import { useState, FormEvent, Dispatch, SetStateAction } from "react";
-import { useQueryLoader } from "react-relay";
-import { query } from "../../App";
+import {
+  Button,
+  FormHelperText,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { useState, Dispatch, SetStateAction } from "react";
+import { UseQueryLoaderLoadQueryOptions } from "react-relay";
+import { Variables } from "relay-runtime";
 
 export type FormProps = {
   /**
@@ -12,7 +18,13 @@ export type FormProps = {
    * To set a new value for the api key.
    */
   setApiKey: Dispatch<SetStateAction<string>>;
-  loadQuery: any;
+  /**
+   * To reload the query passing new header.
+   */
+  loadQuery: (
+    variables: Variables,
+    options?: UseQueryLoaderLoadQueryOptions | undefined
+  ) => void;
 };
 
 function Form(props: FormProps) {
@@ -24,11 +36,14 @@ function Form(props: FormProps) {
     if (props.apiKey === "") {
       return;
     }
-    props.loadQuery({}, { fetchPolicy: "network-only" });
+    // props.loadQuery({}, { fetchPolicy: "network-only" });
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <Typography variant="h4" gutterBottom mt={4}>
+        Search user info using the API key
+      </Typography>
       <Grid container spacing={2} mt={3} mb={3}>
         <Grid item>
           <TextField
