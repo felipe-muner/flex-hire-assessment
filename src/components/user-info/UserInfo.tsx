@@ -33,7 +33,7 @@ function UserInfo({ currentUser }: UserInfoProps) {
     <Fade in={true} timeout={500}>
       <Card>
         <CardContent>
-          <Grid container spacing={2} alignItems="center">
+          <Grid container spacing={2} alignItems="center" marginBottom={4}>
             <Grid item>
               <Avatar alt={name} src={avatarUrl} />
             </Grid>
@@ -41,36 +41,47 @@ function UserInfo({ currentUser }: UserInfoProps) {
               <Typography variant="h5">{name}</Typography>
             </Grid>
           </Grid>
-          <div>
-            {userSkills?.map((skill, index) => (
-              <Fade
-                in={true}
-                timeout={500 + 100 * index}
-                key={skill.skill?.name}
-              >
-                <Badge
-                  badgeContent={skill.experience}
-                  color="secondary"
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  style={{ marginRight: "10px" }} // Adjust badge style here
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              rowGap: "12px",
+              maxWidth: "400px",
+            }}
+          >
+            {userSkills
+              ?.sort((a, b) =>
+                (a.experience || 0) >= (b.experience || 0) ? -1 : 1
+              )
+              ?.map((skill, index) => (
+                <Fade
+                  in={true}
+                  timeout={500 + 100 * index}
+                  key={skill.skill?.name}
                 >
-                  <Typography
-                    variant="body1"
-                    style={{
-                      background: "#e0e0e0", // Adjust background color here
-                      padding: "5px",
-                      borderRadius: "5px",
-                      display: "inline-block",
+                  <Badge
+                    badgeContent={skill.experience}
+                    color="info"
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "left",
                     }}
+                    style={{ marginRight: "10px" }} // Adjust badge style here
                   >
-                    {skill.skill?.name}
-                  </Typography>
-                </Badge>
-              </Fade>
-            ))}
+                    <Typography
+                      variant="body1"
+                      style={{
+                        background: "#e0e0e0", // Adjust background color here
+                        padding: "5px",
+                        borderRadius: "5px",
+                        display: "inline-block",
+                      }}
+                    >
+                      {skill.skill?.name}
+                    </Typography>
+                  </Badge>
+                </Fade>
+              ))}
           </div>
         </CardContent>
       </Card>

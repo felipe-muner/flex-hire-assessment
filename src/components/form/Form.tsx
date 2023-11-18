@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import { useState, Dispatch, SetStateAction } from "react";
 import { UseQueryLoaderLoadQueryOptions } from "react-relay";
+import { useNavigate } from "react-router-dom";
 import { Variables } from "relay-runtime";
 
 export type FormProps = {
@@ -29,6 +30,7 @@ export type FormProps = {
 
 function Form(props: FormProps) {
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const navigate = useNavigate();
   const handleSubmit = (e: any) => {
     e.preventDefault();
     localStorage.setItem("FLEXHIRE-API-KEY", props.apiKey);
@@ -37,6 +39,7 @@ function Form(props: FormProps) {
       return;
     }
     // props.loadQuery({}, { fetchPolicy: "network-only" });
+    navigate('/profile');
   };
 
   return (
