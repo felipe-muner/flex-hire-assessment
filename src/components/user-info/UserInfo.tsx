@@ -1,4 +1,12 @@
-import { Avatar, Badge, Card, CardContent, Fade, Grid, Typography } from "@mui/material";
+import {
+  Avatar,
+  Badge,
+  Card,
+  CardContent,
+  Fade,
+  Grid,
+  Typography,
+} from "@mui/material";
 
 export interface UserInfoProps {
   currentUser: CurrentUser;
@@ -40,8 +48,26 @@ function UserInfo({ currentUser }: UserInfoProps) {
                 timeout={500 + 100 * index}
                 key={skill.skill?.name}
               >
-                <Badge badgeContent={skill.experience} color="secondary">
-                  <Typography style={{whiteSpace:"nowrap"}} variant="body1">{skill.skill?.name}</Typography>
+                <Badge
+                  badgeContent={skill.experience}
+                  color="secondary"
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  style={{ marginRight: "10px" }} // Adjust badge style here
+                >
+                  <Typography
+                    variant="body1"
+                    style={{
+                      background: "#e0e0e0", // Adjust background color here
+                      padding: "5px",
+                      borderRadius: "5px",
+                      display: "inline-block",
+                    }}
+                  >
+                    {skill.skill?.name}
+                  </Typography>
                 </Badge>
               </Fade>
             ))}
