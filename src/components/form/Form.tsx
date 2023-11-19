@@ -26,9 +26,19 @@ export type FormProps = {
     variables: Variables,
     options?: UseQueryLoaderLoadQueryOptions | undefined
   ) => void;
+  /**
+   * To dispose the query.
+   */
+  dispose: () => void;
+  /**
+   * To toggle the dispose button.
+   */
+  showDispose: boolean;
 };
 
 function Form(props: FormProps) {
+  console.log("Form rendered", props.dispose);
+  
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const navigate = useNavigate();
   const handleSubmit = (e: any) => {
@@ -39,7 +49,7 @@ function Form(props: FormProps) {
       return;
     }
     props.loadQuery({}, { fetchPolicy: "network-only" });
-    navigate('/profile');
+    navigate("/profile");
   };
 
   return (
@@ -66,6 +76,11 @@ function Form(props: FormProps) {
             Submit
           </Button>
         </Grid>
+        {props.showDispose && (
+          <Grid item>
+            <Button onClick={() => props.dispose()}>dispose</Button>
+          </Grid>
+        )}
       </Grid>
     </form>
   );

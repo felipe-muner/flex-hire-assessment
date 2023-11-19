@@ -47,8 +47,13 @@ function App() {
             marginTop: "5rem",
           }}
         >
-          <Form apiKey={apiKey} setApiKey={setApiKey} loadQuery={loadQuery} />
-          {queryReference && <Button onClick={() => dispose()}>dispose</Button>}
+          <Form
+            apiKey={apiKey}
+            setApiKey={setApiKey}
+            loadQuery={loadQuery}
+            dispose={dispose}
+            showDispose={!!queryReference}
+          />
           {queryReference && (
             <>
               <nav style={{ marginBottom: "20px" }}>
