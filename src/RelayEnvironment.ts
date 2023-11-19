@@ -10,7 +10,7 @@ import {
 const HTTP_ENDPOINT = "https://flexhire.com/api/v2";
 
 const fetchFn: FetchFunction = async (request, variables) => {
-  const resp = await fetch("/api/v2", {
+  const resp = await fetch(HTTP_ENDPOINT, {
     method: "POST",
     headers: {
       "FLEXHIRE-API-KEY": localStorage.getItem("FLEXHIRE-API-KEY") || "",
