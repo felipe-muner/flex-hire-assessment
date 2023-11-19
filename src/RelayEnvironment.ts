@@ -6,7 +6,6 @@ import {
   FetchFunction,
 } from "relay-runtime";
 
-// @TODO: conditional dev vs prod (proxy on local to pass CORS)
 const PROD_HTTP_ENDPOINT = "https://flexhire.com/api/v2";
 const DEV_HTTP_ENDPOINT = "/api/v2";
 const isProduction = process.env.NODE_ENV === "production";
