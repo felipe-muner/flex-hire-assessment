@@ -27,6 +27,29 @@ export const query = graphql`
         }
         experience
       }
+      jobOpportunities(first: 10) {
+        edges {
+          node {
+            id
+            title
+            status
+            user {
+              id
+              name
+            }
+            questions {
+              title
+              videoAnswer {
+                id
+                video {
+                  id
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;
