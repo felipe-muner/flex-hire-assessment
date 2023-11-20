@@ -1,19 +1,45 @@
 import React from "react";
-import { usePreloadedQuery } from "react-relay";
+import { PreloadedQuery, usePreloadedQuery } from "react-relay";
+import { GraphQLTaggedNode, OperationType } from "relay-runtime";
+import { AppQuery } from "../__generated__/AppQuery.graphql";
+import { Jobs } from "../components";
 
-function JobsPage({
-  queryReference,
-  query,
-}: {
-  queryReference: any;
-  query: any;
-}) {
-  const data = usePreloadedQuery(query, queryReference);
-  console.log("data", data);
+interface JobsPageProps {
+  queryReference:
+    | PreloadedQuery<OperationType, Record<string, unknown>>
+    | null
+    | undefined;
+  query: GraphQLTaggedNode;
+}
+
+function JobsPage(props: JobsPageProps) {
+  const data = usePreloadedQuery<AppQuery>(
+    props.query,
+    props.queryReference as PreloadedQuery<AppQuery, Record<string, unknown>>
+  );
+
+  const user = {
+    name: data.currentUser?.name ?? "",
+    avatarUrl: data.currentUser?.avatarUrl ?? "",
+    videoAnswers:
+      data.currentUser?.answers?.map((answer) => {
+        return answer?.answer?.video?.url ?? "";
+      }) ?? [],
+    userSkills:
+      data.currentUser?.userSkills?.map((skill) => {
+        return {
+          skill: {
+            name: skill?.skill?.name ?? "",
+          },
+          experience: skill?.experience ?? 0,
+        };
+      }) ?? [],
+  };
+
   return (
     <div>
-      <h1>This is a Jobs</h1>
-      <h1>{JSON.stringify(data)}</h1>
+      <h1>Available Jobs</h1>
+      <Jobs currentUser={user} />
     </div>
   );
 }

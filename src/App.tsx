@@ -18,6 +18,9 @@ export const query = graphql`
         answer {
           video {
             url
+            question {
+              title
+            }
           }
         }
       }
@@ -40,9 +43,7 @@ export const query = graphql`
             questions {
               title
               videoAnswer {
-                id
                 video {
-                  id
                   url
                 }
               }

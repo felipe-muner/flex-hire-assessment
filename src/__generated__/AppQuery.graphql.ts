@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1fe66cacd27ff1307b79e04e9c4bf3ea>>
+ * @generated SignedSource<<b4128065b80e19aa908bee1773349a25>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,6 +16,9 @@ export type AppQuery$data = {
     readonly answers: ReadonlyArray<{
       readonly answer: {
         readonly video: {
+          readonly question: {
+            readonly title: string | null | undefined;
+          } | null | undefined;
           readonly url: string;
         } | null | undefined;
       } | null | undefined;
@@ -28,9 +31,7 @@ export type AppQuery$data = {
           readonly questions: ReadonlyArray<{
             readonly title: string | null | undefined;
             readonly videoAnswer: {
-              readonly id: string;
               readonly video: {
-                readonly id: string;
                 readonly url: string;
               } | null | undefined;
             } | null | undefined;
@@ -84,28 +85,28 @@ v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "title",
+  "storageKey": null
+},
+v4 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "experience",
   "storageKey": null
 },
-v4 = [
+v5 = [
   {
     "kind": "Literal",
     "name": "first",
     "value": 10
   }
 ],
-v5 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-},
 v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "title",
+  "name": "id",
   "storageKey": null
 },
 v7 = {
@@ -123,33 +124,8 @@ v8 = {
   "name": "user",
   "plural": false,
   "selections": [
-    (v5/*: any*/),
+    (v6/*: any*/),
     (v0/*: any*/)
-  ],
-  "storageKey": null
-},
-v9 = {
-  "alias": null,
-  "args": null,
-  "concreteType": "Answer",
-  "kind": "LinkedField",
-  "name": "videoAnswer",
-  "plural": false,
-  "selections": [
-    (v5/*: any*/),
-    {
-      "alias": null,
-      "args": null,
-      "concreteType": "Video",
-      "kind": "LinkedField",
-      "name": "video",
-      "plural": false,
-      "selections": [
-        (v5/*: any*/),
-        (v2/*: any*/)
-      ],
-      "storageKey": null
-    }
   ],
   "storageKey": null
 };
@@ -194,7 +170,19 @@ return {
                     "name": "video",
                     "plural": false,
                     "selections": [
-                      (v2/*: any*/)
+                      (v2/*: any*/),
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "Question",
+                        "kind": "LinkedField",
+                        "name": "question",
+                        "plural": false,
+                        "selections": [
+                          (v3/*: any*/)
+                        ],
+                        "storageKey": null
+                      }
                     ],
                     "storageKey": null
                   }
@@ -224,13 +212,13 @@ return {
                 ],
                 "storageKey": null
               },
-              (v3/*: any*/)
+              (v4/*: any*/)
             ],
             "storageKey": null
           },
           {
             "alias": null,
-            "args": (v4/*: any*/),
+            "args": (v5/*: any*/),
             "concreteType": "JobConnection",
             "kind": "LinkedField",
             "name": "jobOpportunities",
@@ -252,8 +240,8 @@ return {
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      (v5/*: any*/),
                       (v6/*: any*/),
+                      (v3/*: any*/),
                       (v7/*: any*/),
                       (v8/*: any*/),
                       {
@@ -264,8 +252,30 @@ return {
                         "name": "questions",
                         "plural": true,
                         "selections": [
-                          (v6/*: any*/),
-                          (v9/*: any*/)
+                          (v3/*: any*/),
+                          {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "Answer",
+                            "kind": "LinkedField",
+                            "name": "videoAnswer",
+                            "plural": false,
+                            "selections": [
+                              {
+                                "alias": null,
+                                "args": null,
+                                "concreteType": "Video",
+                                "kind": "LinkedField",
+                                "name": "video",
+                                "plural": false,
+                                "selections": [
+                                  (v2/*: any*/)
+                                ],
+                                "storageKey": null
+                              }
+                            ],
+                            "storageKey": null
+                          }
                         ],
                         "storageKey": null
                       }
@@ -326,15 +336,28 @@ return {
                     "plural": false,
                     "selections": [
                       (v2/*: any*/),
-                      (v5/*: any*/)
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "Question",
+                        "kind": "LinkedField",
+                        "name": "question",
+                        "plural": false,
+                        "selections": [
+                          (v3/*: any*/),
+                          (v6/*: any*/)
+                        ],
+                        "storageKey": null
+                      },
+                      (v6/*: any*/)
                     ],
                     "storageKey": null
                   },
-                  (v5/*: any*/)
+                  (v6/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v5/*: any*/)
+              (v6/*: any*/)
             ],
             "storageKey": null
           },
@@ -355,18 +378,18 @@ return {
                 "plural": false,
                 "selections": [
                   (v0/*: any*/),
-                  (v5/*: any*/)
+                  (v6/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v3/*: any*/),
-              (v5/*: any*/)
+              (v4/*: any*/),
+              (v6/*: any*/)
             ],
             "storageKey": null
           },
           {
             "alias": null,
-            "args": (v4/*: any*/),
+            "args": (v5/*: any*/),
             "concreteType": "JobConnection",
             "kind": "LinkedField",
             "name": "jobOpportunities",
@@ -388,8 +411,8 @@ return {
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      (v5/*: any*/),
                       (v6/*: any*/),
+                      (v3/*: any*/),
                       (v7/*: any*/),
                       (v8/*: any*/),
                       {
@@ -400,9 +423,33 @@ return {
                         "name": "questions",
                         "plural": true,
                         "selections": [
-                          (v6/*: any*/),
-                          (v9/*: any*/),
-                          (v5/*: any*/)
+                          (v3/*: any*/),
+                          {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "Answer",
+                            "kind": "LinkedField",
+                            "name": "videoAnswer",
+                            "plural": false,
+                            "selections": [
+                              {
+                                "alias": null,
+                                "args": null,
+                                "concreteType": "Video",
+                                "kind": "LinkedField",
+                                "name": "video",
+                                "plural": false,
+                                "selections": [
+                                  (v2/*: any*/),
+                                  (v6/*: any*/)
+                                ],
+                                "storageKey": null
+                              },
+                              (v6/*: any*/)
+                            ],
+                            "storageKey": null
+                          },
+                          (v6/*: any*/)
                         ],
                         "storageKey": null
                       }
@@ -415,23 +462,23 @@ return {
             ],
             "storageKey": "jobOpportunities(first:10)"
           },
-          (v5/*: any*/)
+          (v6/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "f8ac643c48ba12eb79dd36678e985ff6",
+    "cacheID": "049d69454a29fb71900335149bc21039",
     "id": null,
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery {\n  currentUser {\n    name\n    avatarUrl\n    answers {\n      answer {\n        video {\n          url\n          id\n        }\n        id\n      }\n      id\n    }\n    userSkills {\n      skill {\n        name\n        id\n      }\n      experience\n      id\n    }\n    jobOpportunities(first: 10) {\n      edges {\n        node {\n          id\n          title\n          status\n          user {\n            id\n            name\n          }\n          questions {\n            title\n            videoAnswer {\n              id\n              video {\n                id\n                url\n              }\n            }\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n"
+    "text": "query AppQuery {\n  currentUser {\n    name\n    avatarUrl\n    answers {\n      answer {\n        video {\n          url\n          question {\n            title\n            id\n          }\n          id\n        }\n        id\n      }\n      id\n    }\n    userSkills {\n      skill {\n        name\n        id\n      }\n      experience\n      id\n    }\n    jobOpportunities(first: 10) {\n      edges {\n        node {\n          id\n          title\n          status\n          user {\n            id\n            name\n          }\n          questions {\n            title\n            videoAnswer {\n              video {\n                url\n                id\n              }\n              id\n            }\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "23796bc9d55d01cfc6a4d1c8c016fb98";
+(node as any).hash = "4d90ad8a07bc82c43ac2c34853b64663";
 
 export default node;
