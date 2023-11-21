@@ -33,32 +33,7 @@ function App() {
             showDispose={!!queryReference}
           />
           {queryReference && (
-            <>
-              <TabsPanel tabs={["profile", "jobs"]} />
-              <nav style={{ marginBottom: "20px" }}>
-                <Link to="/profile">Profile</Link> |{" "}
-                <Link to="/jobs">Jobs</Link>
-              </nav>
-              <React.Suspense fallback={<Loading />}>
-                <Routes>
-                  <Route
-                    path="/profile"
-                    element={
-                      <ProfilePage
-                        queryReference={queryReference}
-                        query={query}
-                      />
-                    }
-                  />
-                  <Route
-                    path="/jobs"
-                    element={
-                      <JobsPage queryReference={queryReference} query={query} />
-                    }
-                  />
-                </Routes>
-              </React.Suspense>
-            </>
+            <TabsPanel queryReference={queryReference} query={query} />
           )}
         </Container>
       </div>

@@ -3,6 +3,10 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Loading } from "../loading";
+import { PreloadedQuery } from "react-relay";
+import { GraphQLTaggedNode, OperationType } from "relay-runtime";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -37,35 +41,65 @@ function a11yProps(index: number) {
   };
 }
 
+const tabPaths = [
+  {
+    label: "Profile",
+    path: "/profile",
+    Component: React.lazy(() => import("../../pages/profile")),
+  },
+  {
+    label: "Jobs",
+    path: "/jobs",
+    Component: React.lazy(() => import("../../pages/jobs")),
+  },
+  // Add more tabs here in the future...
+];
+
 interface TabsPanelProps {
-  tabs: string[];
+  queryReference:
+    | PreloadedQuery<OperationType, Record<string, unknown>>
+    | null
+    | undefined;
+  query: GraphQLTaggedNode;
 }
 
 export default function TabsPanel(props: TabsPanelProps) {
-  const [value, setValue] = React.useState(0);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const currentTab = tabPaths.findIndex(
+    (tab) => location.pathname === tab.path
+  );
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
+    navigate(tabPaths[newValue].path);
   };
 
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
-          value={value}
+          value={currentTab}
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          {props.tabs.map((tab, index) => (
-            <Tab label={tab} {...a11yProps(index)} key={tab} />
+          {tabPaths.map((tab, index) => (
+            <Tab label={tab.label} {...a11yProps(index)} key={tab.label} />
           ))}
         </Tabs>
       </Box>
-      {props.tabs.map((tab, index) => (
-        <CustomTabPanel value={value} index={index} key={tab}>
-          {tab}
-        </CustomTabPanel>
-      ))}
+      <React.Suspense fallback={<Loading />}>
+        {tabPaths.map(({ path, Component }, index) => (
+          <CustomTabPanel value={currentTab} index={index} key={path}>
+            {currentTab === index && (
+              <Component
+                queryReference={props.queryReference}
+                query={props.query}
+              />
+            )}
+          </CustomTabPanel>
+        ))}
+      </React.Suspense>
     </Box>
   );
 }
