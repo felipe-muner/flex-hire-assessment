@@ -8,7 +8,7 @@ import { useQueryLoader } from "react-relay";
 import { query } from "./AppQuery";
 
 function App() {
-  const [apiKey, setApiKey] = useState<string>("er9bff8zc82ju2w6");
+  const [apiKey, setApiKey] = useState<string>("");
   const [queryReference, loadQuery, dispose] = useQueryLoader(query);
   return (
     <Router>
