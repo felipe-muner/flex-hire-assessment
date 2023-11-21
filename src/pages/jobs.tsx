@@ -18,33 +18,24 @@ function JobsPage(props: JobsPageProps) {
     props.queryReference as PreloadedQuery<AppQuery, Record<string, unknown>>
   );
 
-  const user = {
-    name: data.currentUser?.name ?? "",
-    avatarUrl: data.currentUser?.avatarUrl ?? "",
-    answers:
-      data.currentUser?.answers?.map((answer) => {
-        return {
-          url: answer?.answer?.video?.url ?? "",
-          questionTitle: answer?.answer?.video?.question?.title ?? "",
-        };
-      }) ?? [],
-    userSkills:
-      data.currentUser?.userSkills?.map((skill) => {
-        return {
-          skill: {
-            name: skill?.skill?.name ?? "",
-          },
-          experience: skill?.experience ?? 0,
-        };
-      }) ?? [],
-  };
-
-  
+  const jobs =
+    data.currentUser?.jobOpportunities?.edges?.map((job) => {
+      return {
+        title: job?.node?.title ?? "",
+        firmName: job?.node?.firm?.name ?? "",
+        status: job?.node?.status ?? "",
+        user: {
+          avatarUrl: job?.node?.user?.avatarUrl ?? "",
+          name: job?.node?.user?.name ?? "",
+          email: job?.node?.user?.email ?? "",
+        },
+      };
+    }) ?? [];
 
   return (
     <div>
       <h1>Available Jobs</h1>
-      <Jobs currentUser={user} />
+      <Jobs jobs={jobs} />
     </div>
   );
 }

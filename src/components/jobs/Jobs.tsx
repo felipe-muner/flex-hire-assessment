@@ -6,46 +6,36 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { UserSkills } from "../user-skills";
-import { VideoAnswers } from "../video-answers";
-import { Answer } from "../user-info/UserInfo";
+// import { UserSkills } from "../user-skills";
+// import { VideoAnswers } from "../video-answers";
 
-export interface Skill {
-  readonly name: string | null | undefined;
+
+export interface JobsProps {
+  jobs: {
+    title: string;
+    firmName: string;
+    status: string;
+    user: {
+      avatarUrl: string;
+      name: string;
+      email: string;
+    };
+  }[];
 }
 
-export interface UserSkill {
-  readonly skill: Skill | null | undefined;
-  readonly experience: number | null | undefined;
-}
-
-export interface CurrentUser {
-  name: string;
-  avatarUrl: string;
-  answers: Answer[] | undefined;
-  userSkills: UserSkill[] | undefined;
-}
-
-export interface UserInfoProps {
-  currentUser: CurrentUser;
-}
-
-function Jobs(props: UserInfoProps) {
-  const { name, avatarUrl, userSkills, answers } = props.currentUser;
+function Jobs(props: JobsProps) {
   return (
     <Fade in={true} timeout={500}>
       <Card>
         <CardContent>
           <Grid container spacing={2} alignItems="center" marginBottom={4}>
+            <Grid item></Grid>
             <Grid item>
-              <Avatar alt={name} src={avatarUrl} />
+              <Typography variant="h5">{"@TODO: render each job"}</Typography>
             </Grid>
-            <Grid item>
-              <Typography variant="h5">{name}</Typography>
-            </Grid>
-          </Grid>          
-          <UserSkills userSkills={userSkills} />
-          <VideoAnswers answers={answers} />
+          </Grid>
+          {/* <UserSkills userSkills={userSkills} />
+          <VideoAnswers answers={answers} /> */}
         </CardContent>
       </Card>
     </Fade>
