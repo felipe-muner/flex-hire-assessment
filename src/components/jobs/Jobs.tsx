@@ -2,13 +2,13 @@ import {
   Avatar,
   Card,
   CardContent,
+  Chip,
   Fade,
   Grid,
   Typography,
 } from "@mui/material";
 // import { UserSkills } from "../user-skills";
 // import { VideoAnswers } from "../video-answers";
-
 
 export interface JobsProps {
   jobs: {
@@ -23,22 +23,67 @@ export interface JobsProps {
   }[];
 }
 
+type JobStatusColorsType = {
+  [key: string]: string; // This line adds an index signature
+};
+
+const JOB_STATUS_COLORS: JobStatusColorsType = {
+  closed: "#f44336",
+  deleted: "#9e9e9e",
+  draft: "#ffc107",
+  opened: "#4caf50",
+  template: "#2196f3",
+};
+
 function Jobs(props: JobsProps) {
+  const getBadgeColor = (status: string) => {
+    return JOB_STATUS_COLORS[status.toLowerCase()] || "#000"; // default color if status not found
+  };
   return (
-    <Fade in={true} timeout={500}>
-      <Card>
-        <CardContent>
-          <Grid container spacing={2} alignItems="center" marginBottom={4}>
-            <Grid item></Grid>
-            <Grid item>
-              <Typography variant="h5">{"@TODO: render each job"}</Typography>
-            </Grid>
-          </Grid>
-          {/* <UserSkills userSkills={userSkills} />
-          <VideoAnswers answers={answers} /> */}
-        </CardContent>
-      </Card>
-    </Fade>
+    <Grid container spacing={4}>
+      {props.jobs.map((job, index) => (
+        <Grid item xs={12} md={6} key={index}>
+          <Fade in={true} timeout={500} style={{ marginBottom: "40px" }}>
+            <Card>
+              <CardContent>
+                <Grid container alignItems="center" marginBottom={4}>
+                  <Grid item xs={12}>
+                    <Typography variant="h5">{job?.title}</Typography>
+                    <Typography variant="h6" color={"#999"}>
+                      {job?.firmName}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} style={{ marginTop: "20px" }}>
+                    <Chip
+                      label={job?.status}
+                      style={{
+                        backgroundColor: getBadgeColor(job?.status),
+                        color: "#fff",
+                      }}
+                    />
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    style={{ marginTop: "20px" }}
+                    container
+                    alignItems="center"
+                  >
+                    <Avatar src={job?.user?.avatarUrl} alt={job?.user?.name} />
+                    <div style={{ marginLeft: "10px" }}>
+                      <Typography variant="body1">{job?.user?.name}</Typography>
+                      <Typography color={"#999"} variant="body2">
+                        {job?.user?.email}
+                      </Typography>
+                    </div>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
+          </Fade>
+        </Grid>
+      ))}
+    </Grid>
   );
 }
 

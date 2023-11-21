@@ -32,12 +32,7 @@ function JobsPage(props: JobsPageProps) {
       };
     }) ?? [];
 
-  return (
-    <div>
-      <h1>Available Jobs</h1>
-      <Jobs jobs={jobs} />
-    </div>
-  );
+  return <Jobs jobs={jobs} />;
 }
 
 export default JobsPage;
