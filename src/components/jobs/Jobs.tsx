@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { UserSkills } from "../user-skills";
 import { VideoAnswers } from "../video-answers";
+import { Answer } from "../user-info/UserInfo";
 
 export interface Skill {
   readonly name: string | null | undefined;
@@ -21,7 +22,7 @@ export interface UserSkill {
 export interface CurrentUser {
   name: string;
   avatarUrl: string;
-  videoAnswers: string[] | undefined;
+  answers: Answer[] | undefined;
   userSkills: UserSkill[] | undefined;
 }
 
@@ -30,7 +31,7 @@ export interface UserInfoProps {
 }
 
 function Jobs(props: UserInfoProps) {
-  const { name, avatarUrl, userSkills, videoAnswers } = props.currentUser;
+  const { name, avatarUrl, userSkills, answers } = props.currentUser;
   return (
     <Fade in={true} timeout={500}>
       <Card>
@@ -44,7 +45,7 @@ function Jobs(props: UserInfoProps) {
             </Grid>
           </Grid>          
           <UserSkills userSkills={userSkills} />
-          <VideoAnswers videoAnswers={videoAnswers} />
+          <VideoAnswers answers={answers} />
         </CardContent>
       </Card>
     </Fade>

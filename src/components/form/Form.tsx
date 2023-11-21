@@ -37,8 +37,6 @@ export type FormProps = {
 };
 
 function Form(props: FormProps) {
-  console.log("Form rendered", props.dispose);
-  
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const navigate = useNavigate();
   const handleSubmit = (e: any) => {

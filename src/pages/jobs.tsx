@@ -21,9 +21,12 @@ function JobsPage(props: JobsPageProps) {
   const user = {
     name: data.currentUser?.name ?? "",
     avatarUrl: data.currentUser?.avatarUrl ?? "",
-    videoAnswers:
+    answers:
       data.currentUser?.answers?.map((answer) => {
-        return answer?.answer?.video?.url ?? "";
+        return {
+          url: answer?.answer?.video?.url ?? "",
+          questionTitle: answer?.answer?.video?.question?.title ?? "",
+        };
       }) ?? [],
     userSkills:
       data.currentUser?.userSkills?.map((skill) => {

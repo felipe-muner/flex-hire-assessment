@@ -18,10 +18,15 @@ export interface UserSkill {
   readonly experience: number | null | undefined;
 }
 
+export interface Answer {
+  url: string;
+  questionTitle: string;
+}
+
 export interface CurrentUser {
   name: string;
   avatarUrl: string;
-  videoAnswers: Array<string> | undefined;
+  answers: Answer[] | undefined;
   userSkills: UserSkill[] | undefined;
 }
 
@@ -30,9 +35,9 @@ export interface UserInfoProps {
 }
 
 function UserInfo(props: UserInfoProps) {
-  const { name, avatarUrl, userSkills, videoAnswers } = props.currentUser;
+  const { name, avatarUrl, userSkills, answers } = props.currentUser;
   return (
-    <Fade in={true} timeout={500}>
+    <Fade in={true} timeout={500} aria-current>
       <Card>
         <CardContent>
           <Grid container spacing={2} alignItems="center" marginBottom={4}>
@@ -44,7 +49,7 @@ function UserInfo(props: UserInfoProps) {
             </Grid>
           </Grid>
           <UserSkills userSkills={userSkills} />
-          <VideoAnswers videoAnswers={videoAnswers} />
+          <VideoAnswers answers={answers} />
         </CardContent>
       </Card>
     </Fade>
