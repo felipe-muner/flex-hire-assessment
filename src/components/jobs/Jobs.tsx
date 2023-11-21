@@ -7,8 +7,6 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-// import { UserSkills } from "../user-skills";
-// import { VideoAnswers } from "../video-answers";
 
 export interface JobsProps {
   jobs: {
