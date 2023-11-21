@@ -25,11 +25,7 @@ function CustomTabPanel(props: TabPanelProps) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box sx={{ py: 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -91,12 +87,14 @@ export default function TabsPanel(props: TabsPanelProps) {
       <React.Suspense fallback={<Loading />}>
         {tabPaths.map(({ path, Component }, index) => (
           <CustomTabPanel value={currentTab} index={index} key={path}>
-            {currentTab === index && (
-              <Component
-                queryReference={props.queryReference}
-                query={props.query}
-              />
-            )}
+            <div>
+              {currentTab === index && (
+                <Component
+                  queryReference={props.queryReference}
+                  query={props.query}
+                />
+              )}
+            </div>
           </CustomTabPanel>
         ))}
       </React.Suspense>
