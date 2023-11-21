@@ -39,6 +39,8 @@ function JobsPage(props: JobsPageProps) {
       }) ?? [],
   };
 
+  
+
   return (
     <div>
       <h1>Available Jobs</h1>

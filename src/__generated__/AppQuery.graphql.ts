@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b4128065b80e19aa908bee1773349a25>>
+ * @generated SignedSource<<504a2e40da188a819cd0b45de8f6a6bf>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -27,6 +27,9 @@ export type AppQuery$data = {
     readonly jobOpportunities: {
       readonly edges: ReadonlyArray<{
         readonly node: {
+          readonly firm: {
+            readonly name: string | null | undefined;
+          } | null | undefined;
           readonly id: string;
           readonly questions: ReadonlyArray<{
             readonly title: string | null | undefined;
@@ -39,7 +42,8 @@ export type AppQuery$data = {
           readonly status: JobStatus | null | undefined;
           readonly title: string;
           readonly user: {
-            readonly id: string;
+            readonly avatarUrl: string | null | undefined;
+            readonly email: string | null | undefined;
             readonly name: string | null | undefined;
           } | null | undefined;
         } | null | undefined;
@@ -88,47 +92,48 @@ v3 = {
   "name": "title",
   "storageKey": null
 },
-v4 = {
+v4 = [
+  (v0/*: any*/)
+],
+v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "experience",
   "storageKey": null
 },
-v5 = [
+v6 = [
   {
     "kind": "Literal",
     "name": "first",
     "value": 10
   }
 ],
-v6 = {
+v7 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v7 = {
+v8 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "status",
   "storageKey": null
 },
-v8 = {
+v9 = {
   "alias": null,
   "args": null,
-  "concreteType": "User",
-  "kind": "LinkedField",
-  "name": "user",
-  "plural": false,
-  "selections": [
-    (v6/*: any*/),
-    (v0/*: any*/)
-  ],
+  "kind": "ScalarField",
+  "name": "email",
   "storageKey": null
-};
+},
+v10 = [
+  (v0/*: any*/),
+  (v7/*: any*/)
+];
 return {
   "fragment": {
     "argumentDefinitions": [],
@@ -207,18 +212,16 @@ return {
                 "kind": "LinkedField",
                 "name": "skill",
                 "plural": false,
-                "selections": [
-                  (v0/*: any*/)
-                ],
+                "selections": (v4/*: any*/),
                 "storageKey": null
               },
-              (v4/*: any*/)
+              (v5/*: any*/)
             ],
             "storageKey": null
           },
           {
             "alias": null,
-            "args": (v5/*: any*/),
+            "args": (v6/*: any*/),
             "concreteType": "JobConnection",
             "kind": "LinkedField",
             "name": "jobOpportunities",
@@ -240,10 +243,33 @@ return {
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      (v6/*: any*/),
-                      (v3/*: any*/),
                       (v7/*: any*/),
+                      (v3/*: any*/),
                       (v8/*: any*/),
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "Firm",
+                        "kind": "LinkedField",
+                        "name": "firm",
+                        "plural": false,
+                        "selections": (v4/*: any*/),
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "User",
+                        "kind": "LinkedField",
+                        "name": "user",
+                        "plural": false,
+                        "selections": [
+                          (v0/*: any*/),
+                          (v9/*: any*/),
+                          (v1/*: any*/)
+                        ],
+                        "storageKey": null
+                      },
                       {
                         "alias": null,
                         "args": null,
@@ -345,19 +371,19 @@ return {
                         "plural": false,
                         "selections": [
                           (v3/*: any*/),
-                          (v6/*: any*/)
+                          (v7/*: any*/)
                         ],
                         "storageKey": null
                       },
-                      (v6/*: any*/)
+                      (v7/*: any*/)
                     ],
                     "storageKey": null
                   },
-                  (v6/*: any*/)
+                  (v7/*: any*/)
                 ],
                 "storageKey": null
               },
-              (v6/*: any*/)
+              (v7/*: any*/)
             ],
             "storageKey": null
           },
@@ -376,20 +402,17 @@ return {
                 "kind": "LinkedField",
                 "name": "skill",
                 "plural": false,
-                "selections": [
-                  (v0/*: any*/),
-                  (v6/*: any*/)
-                ],
+                "selections": (v10/*: any*/),
                 "storageKey": null
               },
-              (v4/*: any*/),
-              (v6/*: any*/)
+              (v5/*: any*/),
+              (v7/*: any*/)
             ],
             "storageKey": null
           },
           {
             "alias": null,
-            "args": (v5/*: any*/),
+            "args": (v6/*: any*/),
             "concreteType": "JobConnection",
             "kind": "LinkedField",
             "name": "jobOpportunities",
@@ -411,10 +434,34 @@ return {
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      (v6/*: any*/),
-                      (v3/*: any*/),
                       (v7/*: any*/),
+                      (v3/*: any*/),
                       (v8/*: any*/),
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "Firm",
+                        "kind": "LinkedField",
+                        "name": "firm",
+                        "plural": false,
+                        "selections": (v10/*: any*/),
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "User",
+                        "kind": "LinkedField",
+                        "name": "user",
+                        "plural": false,
+                        "selections": [
+                          (v0/*: any*/),
+                          (v9/*: any*/),
+                          (v1/*: any*/),
+                          (v7/*: any*/)
+                        ],
+                        "storageKey": null
+                      },
                       {
                         "alias": null,
                         "args": null,
@@ -441,15 +488,15 @@ return {
                                 "plural": false,
                                 "selections": [
                                   (v2/*: any*/),
-                                  (v6/*: any*/)
+                                  (v7/*: any*/)
                                 ],
                                 "storageKey": null
                               },
-                              (v6/*: any*/)
+                              (v7/*: any*/)
                             ],
                             "storageKey": null
                           },
-                          (v6/*: any*/)
+                          (v7/*: any*/)
                         ],
                         "storageKey": null
                       }
@@ -462,23 +509,23 @@ return {
             ],
             "storageKey": "jobOpportunities(first:10)"
           },
-          (v6/*: any*/)
+          (v7/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "049d69454a29fb71900335149bc21039",
+    "cacheID": "28eb04b586926c2dd04fa3d1eaacbab5",
     "id": null,
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery {\n  currentUser {\n    name\n    avatarUrl\n    answers {\n      answer {\n        video {\n          url\n          question {\n            title\n            id\n          }\n          id\n        }\n        id\n      }\n      id\n    }\n    userSkills {\n      skill {\n        name\n        id\n      }\n      experience\n      id\n    }\n    jobOpportunities(first: 10) {\n      edges {\n        node {\n          id\n          title\n          status\n          user {\n            id\n            name\n          }\n          questions {\n            title\n            videoAnswer {\n              video {\n                url\n                id\n              }\n              id\n            }\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n"
+    "text": "query AppQuery {\n  currentUser {\n    name\n    avatarUrl\n    answers {\n      answer {\n        video {\n          url\n          question {\n            title\n            id\n          }\n          id\n        }\n        id\n      }\n      id\n    }\n    userSkills {\n      skill {\n        name\n        id\n      }\n      experience\n      id\n    }\n    jobOpportunities(first: 10) {\n      edges {\n        node {\n          id\n          title\n          status\n          firm {\n            name\n            id\n          }\n          user {\n            name\n            email\n            avatarUrl\n            id\n          }\n          questions {\n            title\n            videoAnswer {\n              video {\n                url\n                id\n              }\n              id\n            }\n            id\n          }\n        }\n      }\n    }\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "4d90ad8a07bc82c43ac2c34853b64663";
+(node as any).hash = "c9c590da91e6c53d92ffb00b56e0223a";
 
 export default node;

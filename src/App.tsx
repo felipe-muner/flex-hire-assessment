@@ -36,9 +36,13 @@ export const query = graphql`
             id
             title
             status
-            user {
-              id
+            firm {
               name
+            }
+            user {
+              name
+              email
+              avatarUrl
             }
             questions {
               title
