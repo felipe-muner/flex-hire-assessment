@@ -5,3 +5,4 @@ export { Loading } from './loading';
 export { UserSkills } from './user-skills';
 export { VideoAnswers } from './video-answers';
 export { Jobs } from './jobs';
+export { TabsPanel } from './tabs-panel';

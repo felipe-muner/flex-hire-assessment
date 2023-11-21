@@ -1,63 +1,13 @@
-import { Button, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import "./App.css";
-import { Header, Loading } from "./components";
+import { Header, Loading, TabsPanel } from "./components";
 import { Form } from "./components/form";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import ProfilePage from "./pages/profile";
 import JobsPage from "./pages/jobs";
 import { useQueryLoader } from "react-relay";
-import graphql from "babel-plugin-relay/macro";
-
-export const query = graphql`
-  query AppQuery {
-    currentUser {
-      name
-      avatarUrl
-      answers {
-        answer {
-          video {
-            url
-            question {
-              title
-            }
-          }
-        }
-      }
-      userSkills {
-        skill {
-          name
-        }
-        experience
-      }
-      jobOpportunities(first: 10) {
-        edges {
-          node {
-            id
-            title
-            status
-            firm {
-              name
-            }
-            user {
-              name
-              email
-              avatarUrl
-            }
-            questions {
-              title
-              videoAnswer {
-                video {
-                  url
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+import { query } from "./AppQuery";
 
 function App() {
   const [apiKey, setApiKey] = useState<string>("er9bff8zc82ju2w6");
@@ -84,6 +34,7 @@ function App() {
           />
           {queryReference && (
             <>
+              <TabsPanel tabs={["profile", "jobs"]} />
               <nav style={{ marginBottom: "20px" }}>
                 <Link to="/profile">Profile</Link> |{" "}
                 <Link to="/jobs">Jobs</Link>
