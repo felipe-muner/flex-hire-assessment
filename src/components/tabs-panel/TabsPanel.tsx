@@ -1,7 +1,6 @@
 import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Loading } from "../loading";
@@ -48,7 +47,6 @@ const tabPaths = [
     path: "/jobs",
     Component: React.lazy(() => import("../../pages/jobs")),
   },
-  // Add more tabs here in the future...
 ];
 
 interface TabsPanelProps {

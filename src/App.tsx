@@ -1,11 +1,9 @@
 import { Container } from "@mui/material";
 import "./App.css";
-import { Header, Loading, TabsPanel } from "./components";
+import { Header, TabsPanel } from "./components";
 import { Form } from "./components/form";
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import ProfilePage from "./pages/profile";
-import JobsPage from "./pages/jobs";
+import { useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import { useQueryLoader } from "react-relay";
 import { query } from "./AppQuery";
 
