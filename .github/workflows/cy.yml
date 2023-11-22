@@ -10,11 +10,6 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        env:
-          CYPRESS_BASE_URL: https://flex-hire-assessment.vercel.app/
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          # Other Cypress configurations can go here
       - uses: actions/upload-artifact@v3
         # add the line below to store screenshots only on failures
         # if: failure()
