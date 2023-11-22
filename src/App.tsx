@@ -1,8 +1,8 @@
 import { Container } from "@mui/material";
 import "./App.css";
-import { Header, TabsPanel } from "./components";
+import { Header, Loading, TabsPanel } from "./components";
 import { Form } from "./components/form";
-import { useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useQueryLoader } from "react-relay";
 import { query } from "./AppQuery";
@@ -31,7 +31,9 @@ function App() {
             showDispose={!!queryReference}
           />
           {queryReference && (
-            <TabsPanel queryReference={queryReference} query={query} />
+            <React.Suspense fallback={<Loading />}>
+              <TabsPanel queryReference={queryReference} query={query} />
+            </React.Suspense>
           )}
         </Container>
       </div>

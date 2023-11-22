@@ -39,7 +39,7 @@ export type FormProps = {
 function Form(props: FormProps) {
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const navigate = useNavigate();
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     localStorage.setItem("FLEXHIRE-API-KEY", props.apiKey);
     setIsSubmitted(true);

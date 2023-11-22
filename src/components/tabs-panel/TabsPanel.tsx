@@ -3,9 +3,11 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Loading } from "../loading";
-import { PreloadedQuery } from "react-relay";
+import { PreloadedQuery, usePreloadedQuery } from "react-relay";
 import { GraphQLTaggedNode, OperationType } from "relay-runtime";
+import { AppQuery } from "src/__generated__/AppQuery.graphql";
+import { NotFound } from "../not-found";
+
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -65,11 +67,18 @@ export default function TabsPanel(props: TabsPanelProps) {
     (tab) => location.pathname === tab.path
   );
 
+  const data = usePreloadedQuery<AppQuery>(
+    props.query,
+    props.queryReference as PreloadedQuery<AppQuery, Record<string, unknown>>
+  );
+
+  const isValidUser = !!data.currentUser?.name;
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     navigate(tabPaths[newValue].path);
   };
 
-  return (
+  return isValidUser ? (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
@@ -82,20 +91,20 @@ export default function TabsPanel(props: TabsPanelProps) {
           ))}
         </Tabs>
       </Box>
-      <React.Suspense fallback={<Loading />}>
-        {tabPaths.map(({ path, Component }, index) => (
-          <CustomTabPanel value={currentTab} index={index} key={path}>
-            <div>
-              {currentTab === index && (
-                <Component
-                  queryReference={props.queryReference}
-                  query={props.query}
-                />
-              )}
-            </div>
-          </CustomTabPanel>
-        ))}
-      </React.Suspense>
+      {tabPaths.map(({ path, Component }, index) => (
+        <CustomTabPanel value={currentTab} index={index} key={path}>
+          <div>
+            {currentTab === index && (
+              <Component
+                queryReference={props.queryReference}
+                query={props.query}
+              />
+            )}
+          </div>
+        </CustomTabPanel>
+      ))}
     </Box>
+  ) : (
+    <NotFound />
   );
 }
