@@ -10,7 +10,6 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        with:
         # Set environment variable for Cypress
         env: CYPRESS_BASE_URL=https://flex-hire-assessment.vercel.app/
       - uses: actions/upload-artifact@v3
