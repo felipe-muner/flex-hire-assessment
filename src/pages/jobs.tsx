@@ -1,7 +1,4 @@
-import React from "react";
-import { PreloadedQuery, usePreloadedQuery } from "react-relay";
-import { GraphQLTaggedNode, OperationType } from "relay-runtime";
-import { AppQuery, AppQuery$data } from "../__generated__/AppQuery.graphql";
+import { AppQuery$data } from "../__generated__/AppQuery.graphql";
 import { Jobs } from "../components";
 
 interface JobsPageProps {
