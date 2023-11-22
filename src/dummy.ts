@@ -1,3 +1,6 @@
+/**
+ * INFO: This file contains dummy data to be used in the application.
+ */
 export const DUMMY_CURRENT_USER = {
   currentUser: {
     name: "Felipe Muner",

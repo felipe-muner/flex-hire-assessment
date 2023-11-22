@@ -1,6 +1,6 @@
 describe("render current user data", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/");
+    cy.visit("/");
   });
   it("should check for the presence of specific text", () => {
     cy.contains("Search user info using the API key").should("exist");
