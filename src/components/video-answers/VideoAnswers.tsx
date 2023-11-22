@@ -8,8 +8,8 @@ interface VideoAnswersProps {
 
 function VideoAnswers(props: VideoAnswersProps) {
   return (
-    <div style={{ marginTop: "20px", marginBottom: "40px" }}>
-      <Typography gutterBottom variant="h3">
+    <div style={{ marginTop: "80px", marginBottom: "40px" }}>
+      <Typography gutterBottom variant="h4">
         Video Answers
       </Typography>
       <div style={{ display: "flex", gap: "10px", overflowX: "auto" }}>

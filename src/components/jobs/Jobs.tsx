@@ -22,7 +22,7 @@ export interface JobsProps {
 }
 
 type JobStatusColorsType = {
-  [key: string]: string; // This line adds an index signature
+  [key: string]: string;
 };
 
 const JOB_STATUS_COLORS: JobStatusColorsType = {
@@ -42,8 +42,8 @@ function Jobs(props: JobsProps) {
       {props.jobs.map((job, index) => (
         <Grid item xs={12} md={6} key={index}>
           <Fade in={true} timeout={500} style={{ marginBottom: "40px" }}>
-            <Card>
-              <CardContent>
+            <Card style={{ minHeight: "340px",  background: "#eee" }} variant="outlined">
+              <CardContent style={{ padding: "40px" }}>
                 <Grid container alignItems="center" marginBottom={4}>
                   <Grid item xs={12}>
                     <Typography variant="h5">{job?.title}</Typography>

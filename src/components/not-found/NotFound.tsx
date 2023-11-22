@@ -1,15 +1,14 @@
-import { Box, Typography } from "@mui/material";
-
+import { Alert, Grid } from "@mui/material";
 
 const NOT_FOUND_MESSAGE = "Not Found, please contact the admin";
 
 function NotFound() {
   return (
-    <Box style={{ marginTop: "20px" }}>
-      <Typography gutterBottom variant="h4">
-        {NOT_FOUND_MESSAGE}
-      </Typography>
-    </Box>
+    <Grid container spacing={2} my={5}>
+      <Grid item xs={12} md={6}>
+        <Alert severity="info">{NOT_FOUND_MESSAGE}</Alert>
+      </Grid>
+    </Grid>
   );
 }
 export default NotFound;

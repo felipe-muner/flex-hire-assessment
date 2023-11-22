@@ -1,26 +1,11 @@
+import { AppQuery$data } from "src/__generated__/AppQuery.graphql";
 import { UserInfo } from "../components";
-import {
-  GraphQLTaggedNode,
-  PreloadedQuery,
-  usePreloadedQuery,
-} from "react-relay";
-import { AppQuery } from "../__generated__/AppQuery.graphql";
-import { OperationType } from "relay-runtime";
 
 interface ProfilePageProps {
-  queryReference:
-    | PreloadedQuery<OperationType, Record<string, unknown>>
-    | null
-    | undefined;
-  query: GraphQLTaggedNode;
+  data: AppQuery$data;
 }
 
-function ProfilePage(props: ProfilePageProps) {
-  const data = usePreloadedQuery<AppQuery>(
-    props.query,
-    props.queryReference as PreloadedQuery<AppQuery, Record<string, unknown>>
-  );
-
+function ProfilePage({ data }: ProfilePageProps) {
   const user = {
     name: data.currentUser?.name ?? "",
     avatarUrl: data.currentUser?.avatarUrl ?? "",

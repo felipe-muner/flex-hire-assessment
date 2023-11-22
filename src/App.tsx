@@ -21,6 +21,7 @@ function App() {
             paddingTop: "20px",
             paddingBottom: "20px",
             marginTop: "5rem",
+            minHeight: "500px",
           }}
         >
           <Form

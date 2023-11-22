@@ -7,8 +7,8 @@ interface UserSkillsProps {
 
 function UserSkills(props: UserSkillsProps) {
   return (
-    <div style={{ marginTop: "20px" }}>
-      <Typography gutterBottom variant="h3">
+    <div style={{ marginTop: "60px" }}>
+      <Typography style={{ marginBottom: "20px" }} variant="h4">
         Skills
       </Typography>
       <div

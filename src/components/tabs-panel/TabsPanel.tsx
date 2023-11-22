@@ -8,7 +8,6 @@ import { GraphQLTaggedNode, OperationType } from "relay-runtime";
 import { AppQuery } from "src/__generated__/AppQuery.graphql";
 import { NotFound } from "../not-found";
 
-
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -93,14 +92,7 @@ export default function TabsPanel(props: TabsPanelProps) {
       </Box>
       {tabPaths.map(({ path, Component }, index) => (
         <CustomTabPanel value={currentTab} index={index} key={path}>
-          <div>
-            {currentTab === index && (
-              <Component
-                queryReference={props.queryReference}
-                query={props.query}
-              />
-            )}
-          </div>
+          <div>{currentTab === index && <Component data={data} />}</div>
         </CustomTabPanel>
       ))}
     </Box>
